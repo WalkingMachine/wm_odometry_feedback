@@ -17,9 +17,9 @@ class OdometryFeedback:
 
         # get parameters
         # x axis distance between wheel axis and the robot's centroid
-        self.alpha = rospy.get_param('alpha', 0.31)    # in meter
+        self.alpha = rospy.get_param('alpha', 0.22735)    # in meter
         # y axis distance between wheel radial median and the robot'S centroid
-        self.beta = rospy.get_param('beta', 0.30)    # in meter
+        self.beta = rospy.get_param('beta', 0.2056310)    # in meter
         self.wheel_radius = rospy.get_param('wheel_radius', 0.075)    # wheel radius, in meter
         self.child_id = rospy.get_param('/wm_odometry_feedback_node/child_frame_id', "base_link")
         self.frame_id = rospy.get_param('/wm_odometry_feedback_node/frame_id', "odom")
