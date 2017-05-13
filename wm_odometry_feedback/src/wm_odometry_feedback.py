@@ -24,7 +24,7 @@ class OdometryFeedback:
         self.child_id = rospy.get_param('/wm_odometry_feedback_node/child_frame_id', "base_link")
         self.frame_id = rospy.get_param('/wm_odometry_feedback_node/frame_id', "odom")
         # gearbox ratio
-        self.gb_ratio = rospy.get_param('gearbox_ratio', 15.0)
+        self.gb_ratio = rospy.get_param('gearbox_ratio', 30.0)
 
         self.prev_time = rospy.Time()
 
@@ -35,10 +35,10 @@ class OdometryFeedback:
                        -1.0/(4*(self.alpha+self.beta)), -1.0/(4*(self.alpha+self.beta))]
 
         # ApproximateTimeSynchronizer setup
-        self.FLW_fb = message_filters.Subscriber('roboteq_driver_FLW/feedback', Feedback, queue_size=2)
-        self.FRW_fb = message_filters.Subscriber('roboteq_driver_FRW/feedback', Feedback, queue_size=2)
-        self.RLW_fb = message_filters.Subscriber('roboteq_driver_RLW/feedback', Feedback, queue_size=2)
-        self.RRW_fb = message_filters.Subscriber('roboteq_driver_RRW/feedback', Feedback, queue_size=2)
+        self.FLW_fb = message_filters.Subscriber('drive0/feedback0', Feedback, queue_size=2)
+        self.FRW_fb = message_filters.Subscriber('drive1/feedback1', Feedback, queue_size=2)
+        self.RLW_fb = message_filters.Subscriber('drive2/feedback2', Feedback, queue_size=2)
+        self.RRW_fb = message_filters.Subscriber('drive3/feedback3', Feedback, queue_size=2)
 
         self.async = approxsync.ApproximateSynchronizer(1, [self.FLW_fb, self.FRW_fb,
                                                             self.RLW_fb, self.RRW_fb], 1)
